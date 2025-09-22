@@ -1,0 +1,33 @@
+# ConnectDot Bank AI Agent 환경 설정
+
+# OpenAI API 설정
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-4
+
+# 서버 설정
+NODE_ENV=development
+PORT=3000
+HOST=localhost
+
+# CORS 설정
+ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+# 보안 설정
+SESSION_SECRET=6475f3b91e43054e7e69a66caf32dfaecf06f5be2002badf1ae23419b8063cf6
+JWT_SECRET=1800fa8d48705769ba1f901ef4cd4b0b704bf4c54cd058324c278a3ebc8c2edd
+
+# 로깅 설정
+LOG_LEVEL=info
+LOG_FILE=logs/app.log
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+AI_RATE_LIMIT_MAX=10
+
+# SMS 서비스 (기본값)
+SMS_SENDER=ConnectDot
+
+# 파일 업로드
+MAX_FILE_SIZE=10MB
+UPLOAD_PATH=uploads/

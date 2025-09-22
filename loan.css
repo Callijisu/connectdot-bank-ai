@@ -1,0 +1,479 @@
+/* 대출 서비스 전용 스타일 */
+
+/* 대출 헤더 색상 */
+.header {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* 대출 진행률 바 */
+.progress-fill {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* 대출 번호표 색상 */
+.ticket-number {
+    color: #dc2626;
+}
+
+/* 대출 전용 폼 포커스 */
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 대출 고객 분석 */
+.customer-analysis {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+}
+
+.customer-analysis h3 {
+    color: #dc2626;
+}
+
+/* 대출 분석 태그 */
+.analysis-tag {
+    background: #dc2626;
+}
+
+/* 대출 옵션 선택 */
+.option:hover {
+    border-color: #dc2626;
+    background: #fef2f2;
+}
+
+.option.selected {
+    border-color: #dc2626;
+    background: #dc2626;
+}
+
+/* 대출 버튼 스타일 */
+.btn.primary {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+.btn.primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* 대출 완료 축하 */
+.completion-celebration {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* 대출 추천 점수 */
+.recommendation-score {
+    background: #dc2626;
+}
+
+/* 대출 특화 애니메이션 */
+.loan-glow {
+    animation: loanGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes loanGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+    }
+}
+
+/* 대출 상품 카드 특화 스타일 */
+.loan-product-card {
+    border-left: 4px solid #dc2626;
+    transition: all 0.3s ease;
+}
+
+.loan-product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.15);
+}
+
+/* 대출 금리 표시 */
+.loan-rate {
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* 대출 특화 아이콘 */
+.loan-icon {
+    color: #dc2626;
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+/* 대출 상품 특징 */
+.loan-features {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+}
+
+.loan-features li {
+    color: #7f1d1d;
+    font-size: 0.9rem;
+    margin: 4px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.loan-features li::before {
+    content: '🏦';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 대출 위험 경고 */
+.risk-warning {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    color: #92400e;
+}
+
+.risk-warning strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #d97706;
+}
+
+/* 대출 한도 표시 */
+.loan-limit {
+    background: #dc2626;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 4px 0;
+    display: inline-block;
+}
+
+/* 대출 계산기 스타일 */
+.loan-calculator {
+    background: #f8fafc;
+    border: 2px solid #dc2626;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.calculator-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.calculator-result {
+    background: #dc2626;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.monthly-payment {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* 대출 조건 정보 */
+.loan-conditions {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid #fca5a5;
+}
+
+.condition-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #fca5a5;
+}
+
+.condition-item:last-child {
+    border-bottom: none;
+}
+
+.condition-icon {
+    width: 32px;
+    height: 32px;
+    background: #dc2626;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* 신용등급 표시 */
+.credit-rating {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.1);
+}
+
+.rating-scale {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+
+.rating-item {
+    text-align: center;
+    flex: 1;
+    padding: 8px 4px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.rating-excellent { background: #10b981; color: white; }
+.rating-good { background: #3b82f6; color: white; }
+.rating-fair { background: #f59e0b; color: white; }
+.rating-poor { background: #dc2626; color: white; }
+
+/* 대출 승인 확률 */
+.approval-probability {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.probability-meter {
+    width: 100%;
+    height: 20px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.probability-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.probability-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #7f1d1d;
+    margin-top: 8px;
+}
+
+/* 대출 상품 비교 */
+.loan-comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+}
+
+.loan-comparison th {
+    background: #dc2626;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.loan-comparison td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.loan-comparison tr:last-child td {
+    border-bottom: none;
+}
+
+.loan-comparison tr:nth-child(even) {
+    background: #fef2f2;
+}
+
+/* 담보 정보 */
+.collateral-info {
+    background: #fffbeb;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.collateral-type {
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 8px;
+}
+
+.collateral-value {
+    font-size: 1.1rem;
+    color: #d97706;
+    font-weight: 600;
+}
+
+/* 대출 주의사항 강화 */
+.warning-notice {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border: 3px solid #dc2626;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    color: #7f1d1d;
+}
+
+.warning-notice strong {
+    color: #dc2626;
+    font-size: 1.1rem;
+}
+
+/* 대출 추천 강조 */
+.recommended-loan {
+    position: relative;
+    border: 3px solid #dc2626;
+}
+
+.recommended-loan::before {
+    content: '⭐ 추천';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #dc2626;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* 반응형 대출 스타일 */
+@media (max-width: 768px) {
+    .loan-calculator {
+        padding: 16px;
+    }
+    
+    .calculator-input {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .loan-comparison {
+        font-size: 0.9rem;
+    }
+    
+    .loan-comparison th,
+    .loan-comparison td {
+        padding: 8px;
+    }
+    
+    .rating-scale {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .approval-probability {
+        padding: 16px;
+    }
+    
+    .monthly-payment {
+        font-size: 1.1rem;
+    }
+    
+    .loan-rate {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .credit-rating {
+        padding: 16px;
+    }
+    
+    .condition-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .loan-comparison {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .collateral-info {
+        padding: 12px;
+    }
+    
+    .warning-notice {
+        padding: 16px;
+    }
+    
+    .probability-text {
+        font-size: 1rem;
+    }
+}
+
+/* 다크모드 대출 스타일 */
+@media (prefers-color-scheme: dark) {
+    .loan-product-card {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .loan-features {
+        background: #7f1d1d;
+    }
+    
+    .loan-calculator {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .credit-rating {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .loan-comparison {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .loan-comparison th {
+        background: #b91c1c;
+    }
+    
+    .loan-comparison tr:nth-child(even) {
+        background: #374151;
+    }
+    
+    .approval-probability {
+        background: #7f1d1d;
+        color: #f9fafb;
+    }
+}

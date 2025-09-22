@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectDot Bank - 대출 상품 AI Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/loan.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="bank-info">
+            <div class="bank-name">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">ConnectDot Bank</a>
+            </div>
+            <div class="date-time" id="currentDateTime"></div>
+        </div>
+        <div class="language-selector">
+            <button class="language-btn" onclick="toggleLanguageDropdown()">
+                <span id="currentLang">한국어</span> ▼
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+                <div class="language-option" onclick="changeLanguage('ko')">한국어</div>
+                <div class="language-option" onclick="changeLanguage('en')">English</div>
+                <div class="language-option" onclick="changeLanguage('ja')">日本語</div>
+                <div class="language-option" onclick="changeLanguage('zh')">中文</div>
+                <div class="language-option" onclick="changeLanguage('vi')">Tiếng Việt</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="ai-badge">
+                🤖 AI Agent
+                <span class="ai-real-badge">LIVE</span>
+            </div>
+            <div class="waiting-info">
+                <span data-lang="waiting">대기: </span><span id="waitingCount">5명</span> | 
+                <span data-lang="estimated">예상: </span><span id="estimatedTime">25분</span>
+            </div>
+            <h1 data-lang="title">대출 AI 분석 시스템</h1>
+            <p data-lang="subtitle">인공지능 기반 맞춤형 대출 상품 추천 및 심사 서비스</p>
+        </div>
+        
+        <div class="content">
+            <!-- Step 1: 번호표 발급 -->
+            <div class="step active" id="step1">
+                <div class="step-indicator" data-lang="step1_indicator">번호표 발급</div>
+                <h2 class="section-title">
+                    <span>🎫</span>
+                    <span data-lang="ticket_issued">대출 번호표가 발급되었습니다</span>
+                </h2>
+                
+                <div class="ticket-number-display">
+                    <h3 data-lang="ticket_number">발급번호</h3>
+                    <div class="ticket-number" id="issuedTicketNumber">L-045</div>
+                    <div class="ticket-info">
+                        <div>
+                            <p data-lang="current_number">현재 진행번호</p>
+                            <p class="current-number" id="currentProcessingNumber">L-038</p>
+                        </div>
+                        <div>
+                            <p data-lang="ai_predicted_time">AI 예측 대기시간</p>
+                            <p class="wait-time" id="estimatedWaitTime">약 25분</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-notice">
+                    <strong>⚠️ <span data-lang="loan_warning_title">대출 상담 전 안내사항</span></strong><br>
+                    <span data-lang="loan_warning_desc">대출은 신중한 검토가 필요한 금융상품입니다. AI 분석 결과는 참고용이며, 최종 심사는 별도 진행됩니다.</span>
+                </div>
+                
+                <div class="cta-section">
+                    <button class="btn primary" onclick="startAIAnalysis()">
+                        <span data-lang="start_ai_analysis">AI 대출 분석 시작하기</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: 개인정보 및 대출 정보 입력 -->
+            <div class="step" id="step2">
+                <div class="step-indicator" data-lang="step2_indicator">개인정보 및 대출 정보 입력</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
+                </div>
+
+                <div class="ai-analysis-panel">
+                    <div class="ai-thinking">
+                        <span>🤖</span>
+                        <span data-lang="ai_analyzing">AI가 대출 적격성을 분석합니다</span>
+                        <div class="thinking-dots"></div>
+                    </div>
+                    <p data-lang="ai_analysis_desc">개인정보와 대출 조건을 바탕으로 최적의 대출 상품을 분석하겠습니다.</p>
+                </div>
+                
+                <h2 class="section-title">
+                    <span>👤</span>
+                    <span data-lang="personal_info">개인정보 및 대출 희망 조건</span>
+                </h2>
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <label data-lang="name">이름</label>
+                        <input type="text" id="customerName" placeholder="홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="birth_date">생년월일</label>
+                        <input type="date" id="birthDate">
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="account_number">계좌번호 (포인트 지급용)</label>
+                        <input type="text" id="accountNumber" placeholder="110-123-456789">
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="occupation">직업</label>
+                        <select id="occupation">
+                            <option value="" data-lang="select_option">선택해주세요</option>
+                            <option value="employee" data-lang="employee">회사원</option>
+                            <option value="business" data-lang="business">사업자</option>
+                            <option value="student" data-lang="student">학생</option>
+                            <option value="public" data-lang="public">공무원</option>
+                            <option value="professional" data-lang="professional">전문직</option>
+                            <option value="freelancer" data-lang="freelancer">프리랜서</option>
+                            <option value="other" data-lang="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="income">연 소득</label>
+                        <select id="income">
+                            <option value="" data-lang="select_option">선택해주세요</option>
+                            <option value="below3000" data-lang="below3000">3,000만원 미만</option>
+                            <option value="3000to5000" data-lang="3000to5000">3,000만원 - 5,000만원</option>
+                            <option value="5000to7000" data-lang="5000to7000">5,000만원 - 7,000만원</option>
+                            <option value="7000to10000" data-lang="7000to10000">7,000만원 - 1억원</option>
+                            <option value="above10000" data-lang="above10000">1억원 이상</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="loan_amount">희망 대출 금액</label>
+                        <select id="loanAmount">
+                            <option value="" data-lang="select_option">선택해주세요</option>
+                            <option value="below10m" data-lang="below10m">1,000만원 미만</option>
+                            <option value="10to50m" data-lang="10to50m">1,000만원 - 5,000만원</option>
+                            <option value="50to100m" data-lang="50to100m">5,000만원 - 1억원</option>
+                            <option value="100to300m" data-lang="100to300m">1억원 - 3억원</option>
+                            <option value="above300m" data-lang="above300m">3억원 이상</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-lang="loan_purpose">대출 목적</label>
+                        <select id="loanPurpose">
+                            <option value="" data-lang="select_option">선택해주세요</option>
+                            <option value="house_purchase" data-lang="house_purchase">주택 구입</option>
+                            <option value="house_lease" data-lang="house_lease">주택 전세</option>
+                            <option value="business" data-lang="business_fund">사업자금</option>
+                            <option value="living" data-lang="living_fund">생활자금</option>
+                            <option value="investment" data-lang="investment_fund">투자자금</option>
+                            <option value="other" data-lang="other">기타</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <button class="btn primary" onclick="nextStep()" id="personalInfoNext" disabled>
+                        <span data-lang="next_step">다음 단계</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: AI 대출 심사 분석 -->
+            <div class="step" id="step3">
+                <div class="step-indicator" data-lang="step3_indicator">AI 대출 심사 분석</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                </div>
+
+                <div class="customer-analysis" id="customerAnalysisResult" style="display: none;">
+                    <h3>
+                        🤖 <span data-lang="ai_customer_analysis">AI 대출 적격성 분석 결과</span>
+                    </h3>
+                    <div id="aiAnalysisResult"></div>
+                </div>
+                
+                <h2 class="section-title">
+                    <span>🧠</span>
+                    <span data-lang="ai_questions">AI 대출 심사 질문</span>
+                </h2>
+                
+                <div class="survey-form" id="surveyForm">
+                    <!-- AI 질문들이 동적으로 생성 -->
+                </div>
+                
+                <div class="cta-section">
+                    <button class="btn secondary" onclick="prevStep()">
+                        <span data-lang="prev_step">이전 단계</span>
+                    </button>
+                    <button class="btn primary" onclick="completeAIAnalysis()" id="surveyNext" disabled>
+                        <span data-lang="complete_analysis">AI 심사 완료</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: 결과 및 포인트 지급 -->
+            <div class="step" id="step4">
+                <div class="step-indicator" data-lang="step4_indicator">심사 완료 및 포인트 지급</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                
+                <div class="completion-celebration">
+                    <h2>
+                        🎉 <span data-lang="analysis_complete">AI 대출 심사가 완료되었습니다!</span>
+                    </h2>
+                    <p data-lang="customized_products">고객님께 적합한 대출 상품을 준비했습니다</p>
+                    <div class="auto-reset-info">
+                        <span id="autoResetTimer">10초 후 자동으로 처음 화면으로 돌아갑니다</span>
+                    </div>
+                </div>
+
+                <div class="reward-info">
+                    <h3 data-lang="point_reward">🎁 대출 상담 참여 포인트 지급</h3>
+                    <div class="reward-amount" id="rewardAmount">2,000원</div>
+                    <p><span data-lang="account_transfer">계좌번호: </span><span id="rewardAccount"></span></p>
+                    <p><span data-lang="transfer_time">지급시간: 영업일 기준 1시간 이내</span></p>
+                </div>
+
+                <div class="ai-recommendations">
+                    <h3>
+                        🤖 <span data-lang="ai_recommendations">AI 맞춤 대출 상품 추천</span>
+                    </h3>
+                    <div id="aiSummary" class="ai-summary" style="display: none;"></div>
+                    <div class="recommendation-list" id="aiRecommendationList">
+                        <!-- AI 추천 결과 표시 -->
+                    </div>
+                </div>
+
+                <div class="warning-notice">
+                    <strong>⚠️ <span data-lang="important_notice">중요 안내</span></strong><br>
+                    <span data-lang="notice_1">• 실제 대출 승인은 별도 심사 과정을 거칩니다</span><br>
+                    <span data-lang="notice_2">• 대출은 상환능력 범위 내에서 신중하게 결정하세요</span><br>
+                    <span data-lang="notice_3">• 연체 시 신용등급 하락 및 연체료가 발생할 수 있습니다</span>
+                </div>
+                
+                <div class="cta-section">
+                    <button class="btn secondary" onclick="resetSystem()">
+                        <span data-lang="return_home">처음으로 돌아가기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/translations.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/loan-ai.js"></script>
+</body>
+</html>

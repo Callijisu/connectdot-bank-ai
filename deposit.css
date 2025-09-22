@@ -1,0 +1,380 @@
+/* 예금 서비스 전용 스타일 */
+
+/* 예금 헤더 색상 */
+.header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* 예금 진행률 바 */
+.progress-fill {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* 예금 번호표 색상 */
+.ticket-number {
+    color: #10b981;
+}
+
+/* 예금 전용 폼 포커스 */
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* 예금 고객 분석 */
+.customer-analysis {
+    background: #f0fdf4;
+    border: 1px solid #10b981;
+}
+
+.customer-analysis h3 {
+    color: #10b981;
+}
+
+/* 예금 분석 태그 */
+.analysis-tag {
+    background: #10b981;
+}
+
+/* 예금 옵션 선택 */
+.option:hover {
+    border-color: #10b981;
+    background: #f0fdf4;
+}
+
+.option.selected {
+    border-color: #10b981;
+    background: #10b981;
+}
+
+/* 예금 버튼 스타일 */
+.btn.primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.btn.primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 예금 완료 축하 */
+.completion-celebration {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* 예금 추천 점수 */
+.recommendation-score {
+    background: #10b981;
+}
+
+/* 예금 특화 애니메이션 */
+.deposit-glow {
+    animation: depositGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes depositGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+}
+
+/* 예금 상품 카드 특화 스타일 */
+.deposit-product-card {
+    border-left: 4px solid #10b981;
+    transition: all 0.3s ease;
+}
+
+.deposit-product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* 예금 이자율 표시 */
+.interest-rate {
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* 예금 특화 아이콘 */
+.deposit-icon {
+    color: #10b981;
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+/* 예금 상품 특징 */
+.deposit-features {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+}
+
+.deposit-features li {
+    color: #166534;
+    font-size: 0.9rem;
+    margin: 4px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.deposit-features li::before {
+    content: '💰';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 예금 안전성 표시 */
+.safety-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 4px 0;
+    display: inline-block;
+}
+
+/* 예금 계산기 스타일 */
+.deposit-calculator {
+    background: #f8fafc;
+    border: 2px solid #10b981;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.calculator-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.calculator-result {
+    background: #10b981;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+/* 예금 만기 정보 */
+.maturity-info {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid #a7f3d0;
+}
+
+.maturity-date {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #065f46;
+}
+
+.maturity-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #10b981;
+    margin-top: 8px;
+}
+
+/* 예금 혜택 리스트 */
+.deposit-benefits {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.1);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.benefit-item:last-child {
+    border-bottom: none;
+}
+
+.benefit-icon {
+    width: 32px;
+    height: 32px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* 예금 조건 표시 */
+.deposit-conditions {
+    background: #fffbeb;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.condition-item {
+    margin: 8px 0;
+    color: #92400e;
+    font-size: 0.9rem;
+}
+
+.condition-item::before {
+    content: '⚠️';
+    margin-right: 8px;
+}
+
+/* 예금 상품 비교 테이블 */
+.product-comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+}
+
+.product-comparison th {
+    background: #10b981;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.product-comparison td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.product-comparison tr:last-child td {
+    border-bottom: none;
+}
+
+.product-comparison tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+/* 예금 추천 강조 */
+.recommended-product {
+    position: relative;
+    border: 3px solid #10b981;
+}
+
+.recommended-product::before {
+    content: '🌟 추천';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #10b981;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* 반응형 예금 스타일 */
+@media (max-width: 768px) {
+    .deposit-calculator {
+        padding: 16px;
+    }
+    
+    .calculator-input {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .product-comparison {
+        font-size: 0.9rem;
+    }
+    
+    .product-comparison th,
+    .product-comparison td {
+        padding: 8px;
+    }
+    
+    .maturity-amount {
+        font-size: 1.1rem;
+    }
+    
+    .interest-rate {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .deposit-benefits {
+        padding: 16px;
+    }
+    
+    .benefit-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .product-comparison {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .deposit-conditions {
+        padding: 12px;
+    }
+    
+    .condition-item {
+        font-size: 0.8rem;
+    }
+}
+
+/* 다크모드 예금 스타일 */
+@media (prefers-color-scheme: dark) {
+    .deposit-product-card {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .deposit-features {
+        background: #065f46;
+    }
+    
+    .deposit-calculator {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .product-comparison {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+    
+    .product-comparison th {
+        background: #059669;
+    }
+    
+    .product-comparison tr:nth-child(even) {
+        background: #374151;
+    }
+}

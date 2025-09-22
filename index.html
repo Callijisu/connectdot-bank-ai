@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectDot Bank - AI 금융 서비스</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .bank-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .bank-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-time {
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deposit-card .service-icon {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .loan-card .service-icon {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .loan-card .service-features li::before {
+            color: #ef4444;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+            font-family: inherit;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        }
+
+        .deposit-card .cta-button {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .deposit-card .cta-button:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .loan-card .cta-button {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+
+        .loan-card .cta-button:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+        }
+
+        .ai-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 92, 246, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-info h4 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .status-info p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .service-card {
+                padding: 30px;
+            }
+        }
+
+        /* 로딩 애니메이션 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="top-bar">
+        <div class="bank-info">
+            <div class="bank-name">ConnectDot Bank</div>
+            <div class="date-time" id="currentDateTime"></div>
+        </div>
+        <div class="language-selector">
+            <button class="language-btn" onclick="toggleLanguageDropdown()">
+                <span id="currentLang">한국어</span> ▼
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title" data-lang="main_title">AI 금융 서비스</h1>
+            <p class="hero-subtitle" data-lang="main_subtitle">
+                인공지능이 분석하는 맞춤형 금융 솔루션<br>
+                더 스마트한 금융 경험을 시작하세요
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <!-- 예금 서비스 카드 -->
+            <div class="service-card deposit-card" onclick="navigateToService('deposit')">
+                <div class="ai-badge">🤖 AI AGENT</div>
+                <div class="service-icon">💰</div>
+                <h2 class="service-title" data-lang="deposit_title">예금 AI 분석</h2>
+                <p class="service-description" data-lang="deposit_description">
+                    OpenAI GPT-4가 고객님의 프로필을 분석하여 최적의 예금 상품을 추천합니다
+                </p>
+                
+                <div class="status-info">
+                    <h4 data-lang="current_status">현재 상황</h4>
+                    <p><span data-lang="waiting_customers">대기 고객:</span> <span id="depositWaiting">7명</span></p>
+                    <p><span data-lang="estimated_wait">예상 대기시간:</span> <span id="depositTime">약 18분</span></p>
+                </div>
+
+                <ul class="service-features">
+                    <li data-lang="deposit_feature_1">실시간 AI 고객 프로필 분석</li>
+                    <li data-lang="deposit_feature_2">맞춤형 예금 상품 추천</li>
+                    <li data-lang="deposit_feature_3">참여 포인트 1,000원 지급</li>
+                    <li data-lang="deposit_feature_4">다국어 지원 (5개국)</li>
+                </ul>
+
+                <button class="cta-button">
+                    <span data-lang="start_deposit">예금 AI 분석 시작</span>
+                </button>
+            </div>
+
+            <!-- 대출 서비스 카드 -->
+            <div class="service-card loan-card" onclick="navigateToService('loan')">
+                <div class="ai-badge">🤖 AI AGENT</div>
+                <div class="service-icon">🏦</div>
+                <h2 class="service-title" data-lang="loan_title">대출 AI 심사</h2>
+                <p class="service-description" data-lang="loan_description">
+                    AI 기반 실시간 대출 적격성 분석과 맞춤형 대출 상품 추천 서비스
+                </p>
+                
+                <div class="status-info">
+                    <h4 data-lang="current_status">현재 상황</h4>
+                    <p><span data-lang="waiting_customers">대기 고객:</span> <span id="loanWaiting">5명</span></p>
+                    <p><span data-lang="estimated_wait">예상 대기시간:</span> <span id="loanTime">약 25분</span></p>
+                </div>
+
+                <ul class="service-features">
+                    <li data-lang="loan_feature_1">AI 대출 적격성 사전 심사</li>
+                    <li data-lang="loan_feature_2">실시간 맞춤형 상품 분석</li>
+                    <li data-lang="loan_feature_3">참여 포인트 2,000원 지급</li>
+                    <li data-lang="loan_feature_4">신용도 기반 금리 산정</li>
+                </ul>
+
+                <button class="cta-button">
+                    <span data-lang="start_loan">대출 AI 심사 시작</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p data-lang="footer_text">© 2024 ConnectDot Bank. All rights reserved. | AI-Powered Financial Services</p>
+    </div>
+
+    <!-- 로딩 오버레이 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h3 data-lang="loading_title">AI 시스템 연결 중...</h3>
+            <p data-lang="loading_desc">최적의 서비스를 위해 준비하고 있습니다</p>
+        </div>
+    </div>
+
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+        // 별 생성
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 150;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // 서비스 페이지로 이동
+        function navigateToService(serviceType) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            
+            // 로딩 시뮬레이션
+            setTimeout(() => {
+                if (serviceType === 'deposit') {
+                    window.location.href = 'pages/deposit.html';
+                } else if (serviceType === 'loan') {
+                    window.location.href = 'pages/loan.html';
+                }
+            }, 2000);
+        }
+
+        // 대기 정보 업데이트
+        function updateWaitingInfo() {
+            // 예금 대기 정보
+            const depositWaiting = Math.floor(Math.random() * 5) + 5;
+            const depositTime = Math.floor(Math.random() * 10) + 15;
+            
+            // 대출 대기 정보
+            const loanWaiting = Math.floor(Math.random() * 4) + 4;
+            const loanTime = Math.floor(Math.random() * 15) + 20;
+            
+            document.getElementById('depositWaiting').textContent = depositWaiting + '명';
+            document.getElementById('depositTime').textContent = '약 ' + depositTime + '분';
+            document.getElementById('loanWaiting').textContent = loanWaiting + '명';
+            document.getElementById('loanTime').textContent = '약 ' + loanTime + '분';
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            updateDateTime();
+            updateWaitingInfo();
+            
+            // 주기적 업데이트
+            setInterval(updateDateTime, 60000);
+            setInterval(updateWaitingInfo, 30000);
+        });
+    </script>
+</body>
+</html>
