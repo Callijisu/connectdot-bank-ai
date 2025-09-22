@@ -216,7 +216,7 @@ MIT License
 ## 지원
 
 - 이슈 리포팅: GitHub Issues
-- 기술 문의: support@connectdot-bank.com
+- 기술 문의: callijisu@gmail.com
 - 문서: 프로젝트 Wiki
 
 ## 기여하기
